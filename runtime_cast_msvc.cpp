@@ -1,4 +1,6 @@
 ﻿#include <Windows.h>
+
+/*copy from msvc 2017 */
 extern "C" void * __CLRCALL_OR_CDECL __RTDynamicCast(
     void * inptr,            // Pointer to polymorphic object
     LONG VfDelta,            // Offset of vfptr in object
@@ -14,6 +16,9 @@ void * runtime_cast(
     /*
     https://github.com/scottslacksmith/__RTDynamicCast/blob/master/main.cpp
     */
+    if( *argInputType == *argOutputType ){
+        return argInput;
+    }
     return __RTDynamicCast(
         argInput, 0,
         const_cast<std::type_info *>(argInputType),
