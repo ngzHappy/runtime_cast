@@ -30,6 +30,11 @@ namespace sstd {
             false);
     }
 
+    inline static abi_private::vector<std::type_index>
+        private_runtime_get_bases(const std::type_info * arg) {
+        return {};
+    }
+
 }/*namespace sstd*/
 
 #endif
