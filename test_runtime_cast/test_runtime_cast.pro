@@ -1,6 +1,7 @@
 
 QT += gui
 QT += core
+QT += widgets
 
 CONFIG += console
 

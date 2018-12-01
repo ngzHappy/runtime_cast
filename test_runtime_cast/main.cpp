@@ -34,20 +34,25 @@ public:
 };
 
 #include <cassert>
+#include <QtWidgets/QtWidgets>
 
-int main(int ,char **){
+int main(int argc, char ** argv) {
 
     {
         A14 * a14 = new A14;
         A12 * a12 = a14;
         void * va14 = dynamic_cast<void *>(a12);
         const auto ta14 = &typeid(*a12);
-        assert(a12 == sstd::runtime_dynamic_cast<A12>(va14,ta14));
-        assert(a12 == sstd::runtime_dynamic_cast<A12>(va14,std::type_index(*ta14)));
+        assert(a14 == sstd::runtime_dynamic_cast<A14>(a12, &typeid(A12)));
+        assert(a12 == sstd::runtime_dynamic_cast<A12>(va14, ta14));
+        assert(a12 == sstd::runtime_dynamic_cast<A12>(va14, std::type_index(*ta14)));
     }
 
+    QApplication varApp{ argc , argv };
+    QWidget widget;
+    widget.show();
+    return varApp.exec();
 
-    return 0;
 }
 
 

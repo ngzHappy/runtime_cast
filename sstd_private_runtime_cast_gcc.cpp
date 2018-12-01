@@ -13,10 +13,21 @@ namespace sstd {
         void * argInput/*dynamic_cast<void *>*/,
         const std::type_info * argInputType/*type_id(remove_cvr)*/,
         const std::type_info * argOutputType/*type_id(remove_cvr)*/) {
-        using namespace abi;
-        return __dynamic_cast(argInput,
-            static_cast<const __class_type_info*>(argInputType),
-            static_cast<const __class_type_info*>(argOutputType), -1);
+        /*向下类型转换*/
+        auto varAns = abi::__dynamic_cast(argInput,
+            static_cast<const abi::__class_type_info*>(argInputType),
+            static_cast<const abi::__class_type_info*>(argOutputType), -1);
+        if (varAns) {
+            return varAns;
+        }
+        /*向上类型转换*/
+        varAns = argInput;
+        if (argInputType->__do_upcast(
+            static_cast<const abi::__class_type_info*>(argOutputType),
+            &varAns)) {
+            return varAns;
+        }
+        return nullptr;
     }
 
 }/*sstd*/
