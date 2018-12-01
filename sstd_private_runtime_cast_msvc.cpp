@@ -1,5 +1,6 @@
 ﻿#if defined(_MSC_VER)
 
+#include "sstd_private_runtime_class_information_memory.hpp"
 #include <typeindex>
 #include <typeinfo>
 #include <Windows.h>

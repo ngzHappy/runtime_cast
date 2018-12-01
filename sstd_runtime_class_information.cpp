@@ -1,4 +1,6 @@
-﻿#include <type_traits>
+﻿#include "sstd_private_runtime_class_information_memory.hpp"
+#include <type_traits>
+
 #include "sstd_private_runtime_cast_msvc.cpp"
 #include "sstd_private_runtime_cast_gcc.cpp"
 
@@ -11,6 +13,11 @@ namespace sstd{
         return private_runtime_dynamic_cast(argInput,
                                             argInputType,
                                             argOutputType);
+    }
+
+    abi_private::vector<std::type_index>
+    _0_runtime_get_bases(const std::type_info * arg){
+        return private_runtime_get_bases(arg);
     }
 
 }/************************/
