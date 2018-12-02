@@ -3,16 +3,7 @@
 #include "sstd_private_runtime_class_information_memory.hpp"
 #include <typeindex>
 #include <typeinfo>
-#include <Windows.h>
-
-/*copy from msvc 2017 */
-extern "C" void * __CLRCALL_OR_CDECL __RTDynamicCast(
-    void * inptr,            // Pointer to polymorphic object
-    LONG VfDelta,            // Offset of vfptr in object
-    void * srcVoid,          // Static type of object pointed to by inptr
-    void * targetVoid,       // Desired result of cast
-    BOOL isReference)        // TRUE if input is reference, FALSE if input is ptr
-    noexcept(false);
+#include <rttidata.h>
 
 namespace sstd {
 
